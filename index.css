@@ -1,3 +1,4 @@
+/* OBSOLETE CODE
 @keyframes ping_anim 
 {
     0% 
@@ -25,18 +26,6 @@
 }
 
 
-@keyframes anima
-{
-    25%
-    {
-        transform: scale(2.5);
-    }
-    100%
-    {
-        transform: scale(0.01);
-    }
-}
-
 .ping_hide
 {
     visibility: hidden;
@@ -53,7 +42,23 @@
     animation-duration: 3s;
     animation-iteration-count: 0;
     background: url(ping_missing.webp) 0 0;
+} */
+
+
+
+@keyframes anima
+{
+    25%
+    {
+        transform: scale(2.5);
+    }
+    100%
+    {
+        transform: scale(0.01);
+    }
 }
+
+
 
 img
 {
