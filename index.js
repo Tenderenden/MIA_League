@@ -92,5 +92,25 @@ function removeOneElem(id){
     }
 }
 
+function getRandom(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function showRandomPings(number){
+    var x = 0;
+    var y = 0;
+    var new_element;
+    for (let index = 0; index < number; index++) {
+        var x = getRandom(0, 1920);
+        var y = getRandom(0, 1080);
+        new_element = new ImageInstance(x, y, index);
+        new_element.createOnSite();
+        elements.push(new_element);
+        setTimeout(removeOneElem, 1500);
+    }
+}
+
 var audio = new Audio('mia_cut.mp3');
 
