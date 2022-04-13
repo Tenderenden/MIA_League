@@ -114,6 +114,12 @@ function showRandomPings(number){
     }
 }
 
-var audio = new Audio('mia_cut.mp3');
 
+function confetti(){
+    var conf = new JSConfetti()
+    conf.addConfetti();
+}
+
+var audio = new Audio('mia_cut.mp3');
+var confetti
 window.setInterval(showRandomPings, 2000, 10);
