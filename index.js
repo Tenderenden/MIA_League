@@ -4,14 +4,20 @@ class ImageInstance {
         this.posx = pos_x;
         this.posy = pos_y;
         this.element = null;
+        this.image = null;
         this.style = null;
         this.id_name = 'id'+this.id;
+        
     }
     createOnSite(){
         this.element = document.getElementById(this.id);
         if(this.element == null){
             this.element = document.createElement('div');
             this.element.setAttribute("id", this.id_name);
+            this.image = document.createElement('img');
+            this.image.setAttribute('src', './usb_desc_backup.png');
+            // this.image.setAttribute("id", this.id_name);
+            this.element.appendChild(this.image);
         }
         document.body.appendChild(this.element);
         this.styleElement();
@@ -20,12 +26,12 @@ class ImageInstance {
 
     styleElement(){
         var on_site = document.getElementById(this.id_name);
-        var xpos = (this.posx - on_site.offsetLeft - 20);
-        var ypos = (this.posy - on_site.offsetTop - 20);
+        var xpos = (this.posx - on_site.offsetLeft - 128/2);
+        var ypos = (this.posy - on_site.offsetTop - 128/2);
         
         this.style = document.createElement('style');
         this.style.setAttribute("id", this.id_name);
-        this.style.innerHTML = '#id' + this.id + ' {position: fixed; width: 40px; height: 40px; border: 2px solid black; transform: translate(' + xpos + 'px, ' + ypos + 'px);';
+        this.style.innerHTML = '#id' + this.id + ' {position: fixed; width: 128px; height: 128px; transform: translate(' + xpos + 'px, ' + ypos + 'px);';
     }
 
     removeThis(){
@@ -64,7 +70,7 @@ function showAnim(X, Y){
     znacznik.style.visibility = 'visible';
     znacznik.style.animationIterationCount = 1;
     
-     setTimeout(function() {
+    setTimeout(function() {
         znacznik.className = 'ping_hide';
     }, 2500); 
 }
@@ -72,19 +78,11 @@ function printMousePos(event)
 {
     var mouseX = event.clientX;
     var mouseY = event.clientY;
-    console.log('x:', mouseX, ' y:', mouseY);
-    // showAnim(mouseX, mouseY);
-    // createInClick(mouseX, mouseY);
-    /* elements.push("el"+elements.length);
-    console.log(elements)
-    const el = document.createElement('div');
-    el.textContent = elements[elements.length - 1];
-    document.body.appendChild(el); */
     const new_el = new ImageInstance(mouseX, mouseY, counter);
     new_el.createOnSite();
     counter++;
     elements.push(new_el);
-    setTimeout(removeOneElem, 2000);
+    setTimeout(removeOneElem, 1800);
 }
 
 function removeOneElem(id){
@@ -93,7 +91,6 @@ function removeOneElem(id){
         elements.shift();
     }
 }
-
 
 var audio = new Audio('mia_cut.mp3');
 

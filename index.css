@@ -24,9 +24,17 @@
     }
 }
 
-h1 {
-    color: navy;
-    margin-left: 30%;
+
+@keyframes anima
+{
+    25%
+    {
+        transform: scale(2.5);
+    }
+    100%
+    {
+        transform: scale(0.01);
+    }
 }
 
 .ping_hide
@@ -47,16 +55,8 @@ h1 {
     background: url(ping_missing.webp) 0 0;
 }
 
-.ping_position_test
+img
 {
-    background-color: #f30f4f;
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    /* transform: translate(-50%, -50%);
-    border-radius: 50%;
-    transform-origin: 25px 25px; 
-    transition: all 0.3s ease-in-out; */
-  }
+    animation-name: anima;
+    animation-duration: 2s;
+}
