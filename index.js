@@ -19,9 +19,11 @@ class ImageInstance {
             // this.image.setAttribute("id", this.id_name);
             this.element.appendChild(this.image);
         }
-        document.body.appendChild(this.element);
+        document.getElementById("main").appendChild(this.element);
+        // document.body.appendChild(this.element);
         this.styleElement();
-        document.body.appendChild(this.style);
+        document.getElementById("main").appendChild(this.style);
+        // document.body.appendChild(this.style);
     }
 
     styleElement(){
@@ -103,8 +105,8 @@ function showRandomPings(number){
     var y = 0;
     var new_element;
     for (let index = 0; index < number; index++) {
-        var x = getRandom(0, 1920);
-        var y = getRandom(0, 1080);
+        var x = getRandom(0, 1820);
+        var y = getRandom(0, 900);
         new_element = new ImageInstance(x, y, index);
         new_element.createOnSite();
         elements.push(new_element);
@@ -114,3 +116,4 @@ function showRandomPings(number){
 
 var audio = new Audio('mia_cut.mp3');
 
+window.setInterval(showRandomPings, 2000, 10);
