@@ -123,3 +123,5 @@ function confetti(){
 var audio = new Audio('mia_cut.mp3');
 var confetti
 window.setInterval(showRandomPings, 2000, 10);
+
+let socket = new WebSocket();
