@@ -108,6 +108,7 @@ function showRandomPings(number){
         var x = getRandom(0, 1820);
         var y = getRandom(0, 900);
         new_element = new ImageInstance(x, y, index);
+        // setTimeout(new_element.createOnSite, 500);
         new_element.createOnSite();
         elements.push(new_element);
         setTimeout(removeOneElem, 1500);
@@ -121,7 +122,21 @@ function confetti(){
 }
 
 var audio = new Audio('mia_cut.mp3');
-var confetti
-window.setInterval(showRandomPings, 2000, 10);
+// window.setInterval(showRandomPings, 2000, 10);
 
-let socket = new WebSocket();
+// Create websocket connection.
+const socket = new WebSocket('ws://localhost:1337');
+
+//Connection opened
+socket.addEventListener('open', function(exent){
+    socket.send('hello server!');
+});
+
+//Listen for messages
+socket.addEventListener('message', function(event){
+    console.log('Message from server: ', event.data);
+    if (event.data == "mia") {
+        console.log("ping");
+        showRandomPings(35);
+    }
+});
