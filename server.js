@@ -1,6 +1,26 @@
+const http = require('http');
 const WebSocket = require('ws');
-const wss = new WebSocket.Server({port: 1337})
+const port_http = 8080;
+const port_wss = 1337;
 const clients = new Array();
+
+
+const ws_server = new WebSocket.Server({port: port_wss})
+const http_server = http.createServer((req, res)=> {
+    console.log("Http request found")
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/html');
+    if(clients.length < 1) {
+        res.end('No clients found');
+    }
+    else {
+        res.end('Clients found');
+    }
+})
+
+http_server.listen(port_http, () => {
+    console.log('Server listen on port ${port_http}');
+})
 
 
 function handleConnection(client, request) {
@@ -35,7 +55,7 @@ function broadcast(data) {
     }
 }
 
-wss.on('connection', handleConnection);
+ws_server.on('connection', handleConnection);
 
 function sendLoop (message) {
     console.log("Sending...");
