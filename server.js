@@ -6,22 +6,25 @@ const clients = new Array();
 
 
 const ws_server = new WebSocket.Server({port: port_wss})
-const http_server = http.createServer((req, res)=> {
-    console.log("Http request found")
+const http_server = http.createServer(handleRequest);
+
+http_server.listen(port_http, () => {
+    console.log(`Server listen on port ${port_http}`);
+})
+
+function handleRequest(req, res) {
+    console.log("New Http request");
     res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/html');
+    res.setHeader('Content-type', 'text/html');
     if(clients.length < 1) {
         res.end('No clients found');
     }
     else {
-        res.end('Clients found');
+        res.end(`Found ${clients.length} clients`);
+        sendLoop('mia');
     }
-})
 
-http_server.listen(port_http, () => {
-    console.log('Server listen on port ${port_http}');
-})
-
+}
 
 function handleConnection(client, request) {
     console.log("New connection");
@@ -46,7 +49,7 @@ function handleConnection(client, request) {
     //Set-up of client listeners
     client.on('message', clientResponse);
     client.on('close', endClient);
-    setInterval(sendLoop, 5000, "mia");
+    // setInterval(sendLoop, 5000, "mia");
 }
 
 function broadcast(data) {
