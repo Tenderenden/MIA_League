@@ -51,7 +51,6 @@ var counter = 0;
 window.onload = function()
 {
     document.addEventListener('click', printMousePos);
-    // document.addEventListener('click', showAnim);
 }
 
 function createInClick(X, Y) {
@@ -63,19 +62,6 @@ function createInClick(X, Y) {
 }
 
 
-function showAnim(X, Y){
-    var znacznik = document.getElementById('ping')
-    znacznik.className = 'ping_show';
-    var xpos = (X - znacznik.offsetLeft - znacznik.offsetWidth/2);
-    var ypos = (Y - znacznik.offsetTop - znacznik.offsetHeight/2);
-    znacznik.style.transform = 'translate(' + xpos + 'px, ' + ypos + 'px)';
-    znacznik.style.visibility = 'visible';
-    znacznik.style.animationIterationCount = 1;
-    
-    setTimeout(function() {
-        znacznik.className = 'ping_hide';
-    }, 2500); 
-}
 function printMousePos(event)
 {
     var mouseX = event.clientX;
@@ -108,7 +94,6 @@ function showRandomPings(number){
         var x = getRandom(0, 1820);
         var y = getRandom(0, 900);
         new_element = new ImageInstance(x, y, index);
-        // setTimeout(new_element.createOnSite, 500);
         new_element.createOnSite();
         elements.push(new_element);
         setTimeout(removeOneElem, 1500);
@@ -116,12 +101,10 @@ function showRandomPings(number){
 }
 
 
-function confetti(){
-    var conf = new JSConfetti()
-    conf.addConfetti();
+function showconfetti(){
+    var confetti = new JSConfetti();
+    confetti.addConfetti();
 }
-
-var audio = new Audio('mia_cut.mp3');
 // window.setInterval(showRandomPings, 2000, 10);
 
 // Create websocket connection.
