@@ -48,9 +48,12 @@ var mouseY = 0;
 let elements = [];
 var counter = 0;
 
+var confetti;
+
 window.onload = function()
 {
     document.addEventListener('click', printMousePos);
+    confetti = new JSConfetti();
 }
 
 function createInClick(X, Y) {
@@ -101,10 +104,10 @@ function showRandomPings(number){
 }
 
 
-function showconfetti(){
+/* function showconfetti(){
     var confetti = new JSConfetti();
     confetti.addConfetti();
-}
+} */
 // window.setInterval(showRandomPings, 2000, 10);
 
 // Create websocket connection.
