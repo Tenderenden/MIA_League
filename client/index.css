@@ -48,20 +48,36 @@
 
 @keyframes anima
 {
+    0%
+    {
+        visibility: visible;
+        transform: scale(0);
+    }
     25%
     {
-        transform: scale(2.5);
+        visibility: visible;
+        transform: scale(1);
     }
     100%
     {
-        transform: scale(0.01);
+        visibility: visible;
+        transform: scale(0.001);
     }
 }
 
 
 
-img
+/* img
 {
     animation-name: anima;
     animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-delay: 100ms;
+} */
+
+#main_canvas
+{
+    resize: none;
+    width: 1920px;
+    height: 1080px;
 }
