@@ -1,17 +1,7 @@
 const http = require('http');
 const WebSocket = require('ws');
-const port_http = 8080;
-const port_wss = 1337;
-const clients = new Array();
 
-
-const ws_server = new WebSocket.Server({port: port_wss})
-const http_server = http.createServer(handleRequest);
-
-http_server.listen(port_http, () => {
-    console.log(`Server listen on port ${port_http}`);
-})
-
+// Functions
 function handleRequest(req, res) {
     console.log("New Http request");
     res.statusCode = 200;
@@ -57,6 +47,21 @@ function broadcast(data) {
         clients[c].send(JSON.stringify(data));
     }
 }
+
+
+
+
+// Main code
+const port_http = 8080;
+const port_wss = 1337;
+const clients = new Array();
+
+const ws_server = new WebSocket.Server({port: port_wss})
+const http_server = http.createServer(handleRequest);
+
+http_server.listen(port_http, () => {
+    console.log(`Server listen on port ${port_http}`);
+})
 
 ws_server.on('connection', handleConnection);
 
