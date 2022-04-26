@@ -119,7 +119,7 @@ function connect(){
 
     socket.onclose = function(e) {
         console.log("Connection closed. Reconnect in 1s...")
-        delete socket
+        delete socket;
         setTimeout(function() {
             connect();
         }, 1000);
