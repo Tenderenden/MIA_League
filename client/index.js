@@ -110,6 +110,30 @@ function showRandomPings(number){
     }
 }
 
+function connect(){
+    var socket = new WebSocket('ws://localhost:1337');
+    socket.onopen = function(e) {
+        console.log("Connected to server");
+        socket.send('Connection from site');
+    };
+
+    socket.onclose = function(e) {
+        console.log("Connection closed. Reconnect in 1s...")
+        delete socket
+        setTimeout(function() {
+            connect();
+        }, 1000);
+    }
+
+    socket.onmessage = function(e) {
+        console.log('Message from server: ',e.data);
+        if (e.data == "mia") {
+            console.log("ping");
+            showRandomPings(35);
+        }
+    }
+};
+
 
 /* function showconfetti(){
     var confetti = new JSConfetti();
@@ -117,19 +141,4 @@ function showRandomPings(number){
 } */
 // window.setInterval(showRandomPings, 2000, 10);
 
-// Create websocket connection.
-const socket = new WebSocket('ws://localhost:1337');
-
-//Connection opened
-socket.addEventListener('open', function(exent){
-    socket.send('hello server!');
-});
-
-//Listen for messages
-socket.addEventListener('message', function(event){
-    console.log('Message from server: ', event.data);
-    if (event.data == "mia") {
-        console.log("ping");
-        showRandomPings(35);
-    }
-});
+connect();
