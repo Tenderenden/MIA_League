@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Tenderenden/MIA_League#readme",
   "dependencies": {
+    "request": "^2.88.2",
     "ws": "^8.5.0"
   }
 }
