@@ -1,7 +1,7 @@
 var request = require('request'); // "Request" library
 
 var client_id = '4e7eb63f652c4dc080b385e1f2741f96'; // Your client id
-var client_secret = '8b7dd875ddfb4a29a05cee3b182ac6b7'; // Your secret
+var client_secret = ''; // Your secret
 var redirect_url = 'https://localhost:8081';
 
 var authOptions = {
